@@ -14,7 +14,11 @@ export class productsService{
     }
 
     getSelectedProducts():Observable<Product[]>{
-        let host="http/localhost:3000";
+        let host="http://localhost:3000";
         return this.http.get<Product[]>(host+"/products?selectedOption=true");
+    }
+    searchProduct(keyword:string):Observable<Product[]>{
+        let host="http://localhost:3000";
+        return this.http.get<Product[]>(host+"/products?name_like="+keyword);
     }
 }

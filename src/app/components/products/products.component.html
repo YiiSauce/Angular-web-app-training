@@ -1,26 +1,35 @@
 <nav class="navbar navbar-expand-sm bg-light navbar-light">
-<ul class="navbar navbar-nav">
+  <ul class="navbar navbar-nav">
     <li>
-        <button (click)="onGetAllProducts()" class="btn btn-outline-info ml-2">All</button>
+      <button (click)="onGetAllProducts()" class="btn btn-outline-info ml-2">All</button>
     </li>
     <li>
-        <button class="btn btn-outline-info ml-2">Selected</button>
+      <button (click)="onGetSelectedProducts()" class="btn btn-outline-info ml-2">Selected</button>
     </li>
-</ul>
+  </ul>
+  <ul class="navbar navbar-nav ml-auto">
+    <li>
+      <form class="form-inline" #f="ngForm" (ngSubmit)="onSearch(f.value)">
+          <input type="text" ngModel name="keyword">
+          <button class="btn btn-outline-info btn-sm ml-2"><span class="fa fa-search"></span></button>
+      </form>
+    </li>
+  </ul>
 </nav>
+
 <div class="container" *ngIf="products">
-    <table class="table">
-      <tr>
-        <th>ID</th>
-        <th>NAME</th>
-        <th>SELECTED</th>
-        <th>PRICE</th>
-      </tr>
-      <tr *ngFor="let p of products">
-        <td>{{p.id}}</td>
-        <td>{{p.name}}</td>
-        <td>{{p.selectedOption}}</td>
-        <td>{{p.price}}</td>
-      </tr>
-    </table>
-  </div>
+  <table class="table">
+    <tr>
+      <th>ID</th>
+      <th>NAME</th>
+      <th>SELECTED</th>
+      <th>PRICE</th>
+    </tr>
+    <tr *ngFor="let p of products">
+      <td>{{p.id}}</td>
+      <td>{{p.name}}</td>
+      <td>{{p.selectedOption}}</td>
+      <td>{{p.price}}</td>
+    </tr>
+  </table>
+</div>
